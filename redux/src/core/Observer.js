@@ -4,7 +4,7 @@ let currentObserver = null;
 
 export const observe = (func) => {
   currentObserver = debounceFrame(func);
-  func();
+  func(); // 이게 실행되면서 observable의 get 메서드 실행됨
   currentObserver = null;
 };
 
