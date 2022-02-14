@@ -1,0 +1,29 @@
+import Component from './core/Component.js';
+
+class App extends Component {
+  setup() {
+    this.state = { items: ['item1', 'item2'] };
+  }
+
+  template() {
+    return `
+      <ul>
+        ${this.state.items.map((item) => `<li>${item}</li>`).join('')}
+      </ul>
+      <button>추가</button>
+    `;
+  }
+
+  addItem = () => {
+    const { items } = this.state;
+    this.setState({ items: [...items, `item${items.length + 1}`] });
+  };
+
+  setEvent() {
+    const $addButton = this.$target.querySelector('button');
+    $addButton.removeEventListener('click', this.addItem);
+    $addButton.addEventListener('click', this.addItem);
+  }
+}
+
+export default App;
